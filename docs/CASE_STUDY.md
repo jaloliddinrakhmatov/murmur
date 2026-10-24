@@ -117,7 +117,3 @@ When an output is rejected, the deterministic result is used instead. An evaluat
   - Apple Developer ID signing and notarization for a public release;
   - hosting the account server;
   - automatic updates.
-
-## My role
-
-<!-- Write this in your own words: what you designed, decided, built, reviewed and tested, and which tools you used (for example AI pair programming). Interviewers will ask about it. -->
