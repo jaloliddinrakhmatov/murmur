@@ -1,0 +1,21 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "lib": ["ES2023", "DOM"],
+    "types": ["node", "electron-vite/node"],
+    "module": "ESNext",
+    "moduleResolution": "bundler"
+  },
+  "include": [
+    "src/main",
+    "src/preload",
+    "src/shared",
+    "src/renderer/hub/model",
+    "src/renderer/audio/queue.ts",
+    "src/renderer/audio/coordinator.ts",
+    "src/renderer/capsule/model.ts",
+    "test",
+    "electron.vite.config.ts"
+  ]
+}

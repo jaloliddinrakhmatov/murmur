@@ -1,0 +1,15 @@
+{
+  "name": "@murmur/native",
+  "private": true,
+  "description": "Murmur macOS native addon (Rust + napi-rs): hotkeys, permissions, clipboard, insertion",
+  "main": "index.cjs",
+  "scripts": {
+    "build": "cargo build --release -p murmur-native && cp target/release/libmurmur_native.dylib murmur_native.node.tmp && mv -f murmur_native.node.tmp murmur_native.node",
+    "test": "cargo test -p murmur-core && node --test --test-timeout=30000 \"test/*.test.mjs\"",
+    "measure": "node scripts/measure.mjs",
+    "manual:hotkeys": "node scripts/manual-hotkeys.mjs",
+    "manual:insert": "node scripts/manual-insert.mjs",
+    "typecheck": "true"
+  },
+  "version": "0.1.0"
+}

@@ -1,0 +1,20 @@
+{
+  "name": "@murmur/refine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Transcript processing pipeline: dictionary \u2192 cleanup (deterministic or guarded LLM) \u2192 snippets, with the M0 injection evaluation suite",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.ts\"",
+    "eval": "node eval/run.ts",
+    "typecheck": "tsc -p tsconfig.json",
+    "eval:summary": "node eval/summary-run.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "0.131.0",
+    "@murmur/text": "0.1.0"
+  }
+}

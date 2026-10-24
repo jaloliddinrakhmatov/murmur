@@ -1,0 +1,221 @@
+@import "tailwindcss";
+@import "./design/tokens.css";
+
+/* Expose the tokens to Tailwind as semantic utilities (bg-sheet, text-fg-secondary, …). `inline`
+   keeps them as var() references so light/dark switch at runtime. */
+@theme inline {
+  --color-canvas: var(--m-canvas);
+  --color-sheet: var(--m-sheet);
+  --color-surface: var(--m-surface);
+  --color-surface-hover: var(--m-surface-hover);
+  --color-surface-active: var(--m-surface-active);
+  --color-surface-strong: var(--m-surface-strong);
+  --color-modal: var(--m-modal);
+  --color-overlay: var(--m-overlay);
+  --color-hairline: var(--m-hairline);
+  --color-hairline-strong: var(--m-hairline-strong);
+  --color-fg: var(--m-fg);
+  --color-fg-secondary: var(--m-fg-secondary);
+  --color-fg-tertiary: var(--m-fg-tertiary);
+  --color-fg-on-accent: var(--m-fg-on-accent);
+  --color-primary: var(--m-primary);
+  --color-primary-hover: var(--m-primary-hover);
+  --color-primary-fg: var(--m-primary-fg);
+  --color-night: var(--m-night);
+  --color-night-fg: var(--m-night-fg);
+  --color-night-fg-secondary: var(--m-night-fg-secondary);
+  --color-night-hairline: var(--m-night-hairline);
+  --color-disabled: var(--m-disabled);
+  --color-switch-off: var(--m-switch-off);
+  --color-switch-off-edge: var(--m-switch-off-edge);
+  --color-switch-thumb: var(--m-switch-thumb);
+  --color-on-image: var(--m-on-image);
+  --color-accent: var(--m-accent);
+  --color-accent-hover: var(--m-accent-hover);
+  --color-accent-soft: var(--m-accent-soft);
+  --color-accent-text: var(--m-accent-text);
+  --color-accent-faint: var(--m-accent-faint);
+  --color-success: var(--m-success);
+  --color-success-soft: var(--m-success-soft);
+  --color-warning: var(--m-warning);
+  --color-warning-soft: var(--m-warning-soft);
+  --color-danger: var(--m-danger);
+  --color-danger-soft: var(--m-danger-soft);
+
+  --font-sans: var(--m-font-sans);
+  --font-serif: var(--m-font-serif);
+  --font-mono: var(--m-font-mono);
+
+  /* Type scale (px / line-height), measured from the reference. */
+  --text-micro: 12px; /* uppercase section labels */
+  --text-micro--line-height: 16px;
+  --text-micro--letter-spacing: 0.08em;
+  --text-caption: 13px; /* times, small print, setup card */
+  --text-caption--line-height: 18px;
+  --text-ui: 15px; /* nav, rows, buttons, controls, body default */
+  --text-ui--line-height: 20px;
+  --text-body: 15px; /* reading text */
+  --text-body--line-height: 22px;
+  --text-lead: 17px;
+  --text-lead--line-height: 24px;
+  --text-title: 24px; /* page titles, Figtree 600 */
+  --text-title--line-height: 32px;
+  --text-display: 28px; /* settings section titles, EB Garamond */
+  --text-display--line-height: 34px;
+  --text-number: 26px; /* stat numbers, EB Garamond */
+  --text-number--line-height: 32px;
+  --text-banner: 32px; /* banner headings, EB Garamond */
+  --text-banner--line-height: 38px;
+  --text-heading: 18px; /* dialog titles, Figtree 600 */
+  --text-heading--line-height: 24px;
+  --text-brand: 20px; /* sidebar wordmark */
+  --text-brand--line-height: 24px;
+  --text-card: 30px; /* serif titles on choice cards */
+  --text-card--line-height: 36px;
+  --text-empty: 24px; /* serif empty-state titles */
+  --text-empty--line-height: 30px;
+
+  --radius-xs: 4px; /* keycaps */
+  --radius-sm: 6px;
+  --radius-md: 8px; /* buttons, inputs, nav items */
+  --radius-lg: 10px;
+  --radius-xl: 12px; /* dialogs, popovers */
+  --radius-card: 14px; /* grouped cards */
+  --radius-list: 16px; /* bordered lists, banners, stats card */
+  --radius-sheet: 24px; /* content sheet */
+
+  --shadow-popover: var(--m-shadow-popover);
+  --shadow-dialog: var(--m-shadow-dialog);
+  --shadow-raised: var(--m-shadow-raised);
+
+  --ease-out: var(--m-ease-out);
+  --ease-in-out: var(--m-ease-in-out);
+
+  --animate-fade-in: m-fade-in var(--m-duration-base) var(--m-ease-out);
+  --animate-page-in: m-page-in var(--m-duration-slow) var(--m-ease-out);
+  --animate-dialog-in: m-dialog-in var(--m-duration-base) var(--m-ease-out);
+  --animate-overlay-in: m-fade-in var(--m-duration-base) var(--m-ease-out);
+  --animate-popover-in: m-popover-in var(--m-duration-fast) var(--m-ease-out);
+  --animate-toast-in: m-toast-in var(--m-duration-base) var(--m-ease-out);
+  --animate-sheet-in: m-sheet-in var(--m-duration-slow) var(--m-ease-out);
+}
+
+@keyframes m-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes m-page-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+@keyframes m-dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.985);
+  }
+}
+@keyframes m-popover-in {
+  from {
+    opacity: 0;
+    transform: translateY(-2px) scale(0.98);
+  }
+}
+@keyframes m-sheet-in {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+}
+@keyframes m-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* Base element styles live in the base layer so utilities (e.g. an inset focus ring) can
+   override them; unlayered CSS would beat every Tailwind utility. */
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  /* The window is a fixed shell: only the sidebar and the sheet scroll, never the document. */
+  html,
+  body {
+    overflow: hidden;
+  }
+
+  /* The window is a fixed shell: only the sidebar and the sheet scroll, never the document. */
+
+  body {
+    margin: 0;
+    font-family: var(--m-font-sans);
+    font-size: 15px;
+    line-height: 20px;
+    color: var(--m-fg);
+    background: var(--m-canvas);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* Desktop app, not a page: no rubber-band scroll or text selection of chrome. */
+    overscroll-behavior: none;
+    user-select: none;
+    cursor: default;
+  }
+
+  /* Text the user may want to copy stays selectable. */
+  input,
+  textarea,
+  [data-selectable] {
+    user-select: text;
+  }
+
+  /* One focus treatment everywhere: visible only for keyboard navigation. */
+  :focus-visible {
+    outline: 2px solid var(--m-focus);
+    outline-offset: 2px;
+  }
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  ::selection {
+    background: var(--m-accent-soft);
+  }
+}
+
+/* macOS-style overlay scrollbars inside the sheet. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--m-hairline-strong);
+  border-radius: 8px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.drag {
+  -webkit-app-region: drag;
+}
+.no-drag {
+  -webkit-app-region: no-drag;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+}

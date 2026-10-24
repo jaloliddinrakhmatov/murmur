@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "erasableSyntaxOnly": false,
+    "verbatimModuleSyntax": false
+  },
+  "include": ["src", "test", "scripts", "prisma.config.ts"]
+}

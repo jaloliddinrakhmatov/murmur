@@ -1,0 +1,13 @@
+{
+  "name": "@murmur-proto/cleanup-bench",
+  "private": true,
+  "type": "module",
+  "description": "M0 prototype E: LLM dictation-cleanup benchmark with timeout and raw fallback",
+  "scripts": {
+    "bench": "node src/run.ts",
+    "test": "node --test \"test/*.test.ts\""
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "0.131.0"
+  }
+}

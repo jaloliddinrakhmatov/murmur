@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <!-- Hardened runtime: Electron's JIT needs these. -->
+    <key>com.apple.security.cs.allow-jit</key>
+    <true/>
+    <key>com.apple.security.cs.allow-unsigned-executable-memory</key>
+    <true/>
+    <!-- Ad-hoc and dev builds only (entitlements.mac.signed.plist is used for Developer ID builds):
+         ad-hoc signatures have no Team ID, so library validation would reject murmur_native.node. -->
+    <key>com.apple.security.cs.disable-library-validation</key>
+    <true/>
+    <!-- Dictation records from the microphone. -->
+    <key>com.apple.security.device.audio-input</key>
+    <true/>
+    <!-- Connectors → Calendar reads events through EventKit, only after the person connects it. -->
+    <key>com.apple.security.personal-information.calendars</key>
+    <true/>
+  </dict>
+</plist>

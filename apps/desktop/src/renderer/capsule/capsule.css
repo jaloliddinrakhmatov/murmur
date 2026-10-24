@@ -1,0 +1,217 @@
+/*
+ * Murmur Capsule: a small pill that follows Murmur's light and dark tokens. Restraint over
+ * effects: one hairline, one soft shadow, no blur. The window is transparent around the pill so
+ * the shadow has room; only the pill takes clicks.
+ */
+@import "../hub/design/tokens.css";
+
+:root {
+  --pill-bg: color-mix(in srgb, var(--m-sheet) 96%, transparent);
+  --pill-edge: var(--m-hairline-strong);
+  --pill-shadow:
+    0 4px 14px rgba(20, 16, 12, 0.16), 0 1px 3px rgba(20, 16, 12, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --pill-bg: color-mix(in srgb, #121014 94%, transparent);
+    --pill-edge: rgba(255, 255, 255, 0.12);
+    --pill-shadow: 0 4px 16px rgba(0, 0, 0, 0.45), 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: transparent;
+  overflow: hidden;
+  user-select: none;
+  cursor: default;
+  font: 500 13px/16px var(--m-font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#capsule {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 34px;
+  max-width: 352px;
+  padding: 0 8px 0 11px;
+  border-radius: 17px;
+  background: var(--pill-bg);
+  box-shadow:
+    inset 0 0 0 0.5px var(--pill-edge),
+    var(--pill-shadow);
+  color: var(--m-fg);
+  white-space: nowrap;
+  transition:
+    padding var(--m-duration-fast) var(--m-ease-out),
+    opacity var(--m-duration-base) var(--m-ease-out);
+}
+
+/* Without visible text the pill keeps symmetric padding. */
+#capsule[data-text="false"][data-cancel="false"] {
+  padding: 0 11px;
+}
+
+/* At rest: the Murmur mark in a small pill, quiet until hovered. */
+#capsule[data-state="resting"]:not([data-tone="warning"]) {
+  height: 22px;
+  padding: 0 9px;
+  opacity: 0.72;
+}
+#capsule[data-state="resting"]:hover {
+  opacity: 1;
+}
+
+.icon {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+.icon svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+#capsule[data-state="resting"] .icon {
+  width: 22px;
+}
+#capsule[data-state="resting"] .icon svg {
+  width: 22px;
+}
+.mark-body {
+  fill: var(--m-fg);
+  stroke: none;
+}
+.mark-dot {
+  fill: var(--m-accent);
+  stroke: none;
+}
+.icon .fill {
+  fill: currentColor;
+  stroke: none;
+}
+.icon .track {
+  opacity: 0.25;
+}
+.spin {
+  animation: spin 900ms linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#capsule[data-tone="neutral"] .icon {
+  color: var(--m-fg-secondary);
+}
+#capsule[data-tone="accent"] .icon {
+  color: var(--m-accent);
+}
+#capsule[data-tone="success"] .icon {
+  color: var(--m-success);
+}
+#capsule[data-tone="warning"] .icon {
+  color: var(--m-warning);
+}
+#capsule[data-tone="danger"] .icon {
+  color: var(--m-danger);
+}
+
+/* Waveform: one bar per ~100 ms of real microphone level, newest on the right. */
+.wave {
+  display: none;
+  align-items: center;
+  gap: 2px;
+  height: 18px;
+}
+#capsule[data-wave="true"] .wave {
+  display: flex;
+}
+.wave i {
+  width: 3px;
+  height: 3px;
+  border-radius: 1.5px;
+  background: var(--m-accent);
+  transition:
+    height 90ms linear,
+    background-color var(--m-duration-fast) linear;
+}
+/* Microphone still opening (no level yet): muted dots, so a slow start is visible. */
+#capsule[data-live="false"] .wave i {
+  background: var(--m-fg-tertiary);
+}
+
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#capsule[data-text="false"] .label {
+  display: none;
+}
+
+.cancel {
+  display: none;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--m-fg-tertiary);
+}
+.cancel svg {
+  width: 12px;
+  height: 12px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+#capsule[data-cancel="true"] .cancel {
+  display: flex;
+}
+.cancel:hover {
+  background: var(--m-surface-hover);
+  color: var(--m-fg);
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Reduced motion: the waveform still shows real levels, without easing; no spinning. */
+@media (prefers-reduced-motion: reduce) {
+  #capsule,
+  .wave i {
+    transition: none;
+  }
+  .spin {
+    animation: none;
+  }
+}

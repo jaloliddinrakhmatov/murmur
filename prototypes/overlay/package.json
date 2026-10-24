@@ -1,0 +1,13 @@
+{
+  "name": "@murmur-proto/overlay",
+  "private": true,
+  "description": "M0 prototype B: Electron floating Capsule overlay (macOS)",
+  "main": "main.cjs",
+  "scripts": {
+    "start": "env -u ELECTRON_RUN_AS_NODE electron .",
+    "selftest": "env -u ELECTRON_RUN_AS_NODE electron . --selftest"
+  },
+  "devDependencies": {
+    "electron": "44.5.1"
+  }
+}

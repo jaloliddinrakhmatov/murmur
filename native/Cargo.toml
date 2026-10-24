@@ -1,0 +1,12 @@
+[workspace]
+resolver = "2"
+members = ["crates/murmur-core", "crates/murmur-native"]
+
+[workspace.package]
+edition = "2021"
+publish = false
+version = "0.0.0"
+
+[profile.release]
+lto = true
+strip = "symbols"

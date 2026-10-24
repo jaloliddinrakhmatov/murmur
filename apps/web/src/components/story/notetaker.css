@@ -1,0 +1,135 @@
+.nt-card {
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border-radius: 2rem;
+  background: var(--m-modal);
+  box-shadow:
+    inset 0 0 0 1px var(--m-night-hairline),
+    var(--m-shadow-card);
+  backdrop-filter: blur(6px);
+}
+.nt-card-h {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+}
+.nt-card-h p {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.nt-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--m-accent);
+  box-shadow: 0 0 10px var(--m-accent);
+}
+.nt-tag {
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  background: var(--m-accent-soft);
+  color: var(--m-accent-text);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.nt-art {
+  display: block;
+  width: 100%;
+  margin-top: 0.75rem;
+}
+.nt-line-art {
+  fill: none;
+  stroke: var(--m-night-fg);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.85;
+}
+.nt-rec {
+  fill: var(--m-accent);
+}
+.nt-arcs {
+  fill: none;
+  stroke: var(--m-accent);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+.nt-lbl {
+  fill: var(--m-night-fg-secondary);
+  font-size: 13px;
+  font-weight: 600;
+}
+.nt-lines {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1rem;
+  list-style: none;
+  padding: 0;
+}
+.nt-line {
+  display: flex;
+  flex-direction: column;
+}
+.nt-others {
+  align-items: flex-end;
+}
+.nt-who {
+  margin-bottom: 0.2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--m-night-fg-secondary);
+}
+.nt-bubble {
+  max-width: 88%;
+  padding: 0.55rem 0.95rem;
+  border-radius: 1.1rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+.nt-you .nt-bubble {
+  background: var(--m-accent-soft);
+  border-bottom-left-radius: 0.35rem;
+}
+.nt-others .nt-bubble {
+  background: var(--m-surface-strong);
+  border-bottom-right-radius: 0.35rem;
+}
+.nt-sum {
+  margin-top: 1.4rem;
+  padding: 1rem 1.1rem;
+  border-radius: 1.1rem;
+  border: 1px dashed var(--m-night-hairline);
+}
+.nt-sum-h {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+}
+.nt-sum-h span {
+  font-size: 0.75rem;
+  color: var(--m-night-fg-secondary);
+}
+.nt-sum ul {
+  display: grid;
+  gap: 0.45rem;
+  list-style: none;
+  padding: 0;
+}
+.nt-bullet {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.9375rem;
+}
+.nt-bullet svg {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: var(--m-accent-text);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

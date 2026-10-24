@@ -1,0 +1,12 @@
+{
+  "name": "@murmur-proto/speech-bench",
+  "private": true,
+  "type": "module",
+  "description": "M0 prototype D: provider-independent speech-to-text benchmark",
+  "scripts": {
+    "prepare-samples": "node src/prepare.ts",
+    "bench": "node src/run.ts",
+    "rescore": "node src/rescore.ts",
+    "test": "node --test \"test/*.test.ts\""
+  }
+}

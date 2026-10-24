@@ -1,0 +1,87 @@
+.sr-card {
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+  border-radius: 2rem;
+}
+.sr-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.sr-big {
+  font-variant-numeric: tabular-nums;
+}
+.sr-lanes {
+  display: grid;
+  gap: 2rem;
+  margin-top: 1rem;
+  list-style: none;
+  padding: 0;
+}
+.sr-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  font-weight: 600;
+}
+.sr-wpm {
+  font-weight: 400;
+  color: var(--m-fg-secondary);
+}
+.sr-words {
+  font-weight: 400;
+  color: var(--m-fg-secondary);
+  font-variant-numeric: tabular-nums;
+}
+.sr-words b {
+  color: var(--m-fg);
+  font-weight: 600;
+}
+.sr-track {
+  height: 0.9rem;
+  margin-top: 0.6rem;
+  border-radius: 999px;
+  background: var(--m-surface-strong);
+  overflow: hidden;
+}
+.sr-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--m-hairline-strong);
+  transform-origin: 0 50%;
+}
+.sr-fill-accent {
+  background: linear-gradient(90deg, var(--m-accent), #f4a26e);
+}
+.sr-done {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.55rem;
+  font-size: 0.875rem;
+  color: var(--m-fg-secondary);
+}
+.sr-done svg {
+  color: var(--m-success);
+}
+.sr-done b {
+  color: var(--m-fg);
+}
+.sr-note {
+  margin-top: 2rem;
+  max-width: 44rem;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--m-fg-secondary);
+}
+.sr-elapsed {
+  margin-top: 2rem;
+  font-size: 0.875rem;
+  color: var(--m-fg-secondary);
+}
+.sr-clock {
+  color: var(--m-fg);
+  font-variant-numeric: tabular-nums;
+}

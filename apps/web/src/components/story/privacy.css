@@ -1,0 +1,88 @@
+.pv-figure {
+  margin: 3.5rem auto 0;
+  max-width: 62rem;
+}
+.pv-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.pv-wide {
+  display: none;
+}
+@media (min-width: 900px) {
+  .pv-wide {
+    display: block;
+  }
+  .pv-tall {
+    display: none;
+  }
+}
+.pv-tall {
+  max-width: 24rem;
+  margin-inline: auto;
+}
+.pv-line {
+  fill: none;
+  stroke: var(--m-night-fg);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.pv-line .pv-lock {
+  stroke: var(--m-accent-text);
+}
+.pv-line .pv-svc {
+  stroke: var(--m-night-fg);
+  stroke-width: 2.2;
+}
+.pv-line .pv-no {
+  stroke: var(--m-night-fg-secondary);
+  opacity: 0.8;
+}
+.pv-line .pv-dash {
+  stroke-dasharray: 3 7;
+}
+.pv-route {
+  fill: none;
+  stroke: var(--m-accent);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-dasharray: 2 9;
+}
+.pv-maskline {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 8;
+}
+.pv-dot {
+  opacity: 0;
+  fill: var(--m-accent);
+  filter: drop-shadow(0 0 6px var(--m-accent));
+}
+.pv-h {
+  fill: var(--m-night-fg);
+  font-size: 18px;
+  font-weight: 600;
+}
+.pv-s {
+  fill: var(--m-night-fg-secondary);
+  font-size: 14px;
+}
+.pv-point {
+  padding: 1.75rem;
+  border-radius: 1.5rem;
+  border: 1px solid var(--m-night-hairline);
+  background: var(--m-modal);
+  transition:
+    border-color 300ms,
+    background-color 300ms;
+}
+.pv-point:hover {
+  border-color: rgba(255, 138, 76, 0.45);
+  background: var(--m-accent-faint);
+}
+.pv-icon {
+  color: var(--m-accent-text);
+}

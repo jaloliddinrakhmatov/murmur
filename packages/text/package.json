@@ -1,0 +1,14 @@
+{
+  "name": "@murmur/text",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Deterministic dictation cleanup and text utilities (no runtime dependencies)",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.ts\"",
+    "typecheck": "tsc -p tsconfig.json"
+  }
+}

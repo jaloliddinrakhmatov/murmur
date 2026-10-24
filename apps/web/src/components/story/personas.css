@@ -1,0 +1,109 @@
+.pg {
+  padding-block: 6rem;
+}
+.pg-view {
+  margin-top: 3rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--pg-pad);
+  scrollbar-width: none;
+  --pg-pad: max(1.25rem, calc((100% - 72rem) / 2 + 2rem));
+}
+.pg-view::-webkit-scrollbar {
+  display: none;
+}
+.pg-track {
+  display: flex;
+  gap: 1.25rem;
+  width: max-content;
+  padding: 0.5rem var(--pg-pad) 1.5rem;
+  list-style: none;
+}
+.pg-card {
+  flex: 0 0 min(84vw, 21rem);
+  scroll-snap-align: start;
+  padding: 1.5rem;
+  border-radius: 1.75rem;
+}
+.pg-scene {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 1.25rem;
+  padding: 0.75rem;
+  border-radius: 1.1rem;
+  background:
+    radial-gradient(80% 90% at 50% 0%, var(--m-accent-faint), transparent 80%),
+    var(--m-surface);
+  fill: none;
+  stroke: var(--m-fg);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.pg-scene .p {
+  stroke: var(--m-accent);
+}
+.pg-scene .t {
+  fill: var(--m-accent-text);
+  stroke: none;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 11px;
+  font-weight: 600;
+}
+.pg-card h3 {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 2rem;
+  line-height: 1.1;
+  font-weight: 500;
+}
+.pg-line {
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+.pg-ex {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--m-hairline);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--m-fg-secondary);
+}
+.pg-prog {
+  height: 3px;
+  margin-top: 0.5rem;
+  border-radius: 3px;
+  background: var(--m-hairline-strong);
+  overflow: hidden;
+}
+.pg-prog i {
+  display: block;
+  height: 100%;
+  background: var(--m-accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+
+@media (min-width: 1024px) and (min-height: 780px) and (prefers-reduced-motion: no-preference) {
+  .pg {
+    padding-block: 0;
+  }
+  .pg-pin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100svh - 4rem);
+    padding-block: 2rem;
+  }
+  .pg-view {
+    overflow: hidden;
+    margin-top: 2.5rem;
+    scroll-snap-type: none;
+  }
+  .pg-card {
+    flex-basis: 24rem;
+  }
+  .pg-track {
+    will-change: transform;
+  }
+}

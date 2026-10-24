@@ -1,0 +1,157 @@
+.tm-wrap {
+  position: relative;
+}
+.tm-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -2rem;
+  z-index: -1;
+  background: radial-gradient(
+    60% 60% at 50% 40%,
+    var(--m-glow),
+    transparent 70%
+  );
+}
+.tm-dict {
+  padding: 1.25rem 1.25rem 1.5rem;
+  border-radius: 2rem;
+  background: var(--m-sheet);
+  box-shadow:
+    0 0 0 1px var(--m-hairline),
+    var(--m-shadow-window);
+}
+.tm-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.25rem 0.25rem 1rem;
+}
+.tm-head p {
+  display: grid;
+  gap: 0.1rem;
+}
+.tm-head p > b {
+  font-size: 1.05rem;
+}
+.tm-head p span {
+  font-size: 0.8125rem;
+  color: var(--m-fg-secondary);
+}
+.tm-count {
+  color: var(--m-fg);
+  font-variant-numeric: tabular-nums;
+}
+.tm-ill {
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: var(--m-accent-faint);
+  color: var(--m-accent-text);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.tm-list {
+  position: relative;
+  height: calc(56px * 5);
+  overflow: hidden;
+}
+.tm-list ul {
+  list-style: none;
+  padding: 0;
+}
+.tm-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  margin-bottom: 8px;
+  border-radius: 0.9rem;
+  background: var(--m-surface);
+}
+.tm-filled,
+.tm-empty {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0 1rem;
+}
+.tm-empty {
+  position: absolute;
+  inset: 0;
+  justify-content: flex-start;
+  gap: 0.4rem;
+  border-radius: inherit;
+  border: 1px dashed var(--m-hairline-strong);
+  font-size: 0.875rem;
+  color: var(--m-fg-secondary);
+  opacity: 0;
+}
+.tm-word {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 1.3rem;
+}
+.tm-by {
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: var(--m-surface-strong);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--m-fg-secondary);
+}
+.tm-by-you {
+  background: var(--m-accent-soft);
+  color: var(--m-accent-text);
+}
+.tm-click {
+  position: absolute;
+  left: 150px;
+  top: 26px;
+  width: 26px;
+  height: 26px;
+  margin: -13px 0 0 -13px;
+  border-radius: 50%;
+  border: 2px solid var(--m-accent);
+  opacity: 0;
+  pointer-events: none;
+}
+.tm-cursor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  pointer-events: none;
+  will-change: transform;
+}
+.tm-cursor svg {
+  display: block;
+  stroke: var(--m-canvas);
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+}
+.tm-cursor span {
+  position: absolute;
+  left: 14px;
+  top: 16px;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px 999px 999px 0.2rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.tm-cursor-you svg {
+  fill: var(--m-accent);
+}
+.tm-cursor-you span {
+  background: var(--m-accent);
+  color: #fff;
+}
+.tm-cursor-mate svg {
+  fill: var(--m-fg);
+}
+.tm-cursor-mate span {
+  background: var(--m-fg);
+  color: var(--m-canvas);
+}

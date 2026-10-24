@@ -1,0 +1,145 @@
+/* Header, menu and theme toggle: the site chrome. */
+
+.site-bar {
+  --bar-h: 4rem;
+  height: var(--bar-h);
+  max-width: 76rem;
+  margin: 0 auto;
+  border-radius: 0;
+  transition:
+    max-width 600ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    height 600ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    margin 600ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-radius 600ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 400ms,
+    box-shadow 400ms,
+    backdrop-filter 400ms;
+}
+.site-bar[data-condensed="true"] {
+  --bar-h: 3.25rem;
+  max-width: 62rem;
+  margin-top: 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--m-canvas) 66%, transparent);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  backdrop-filter: blur(18px) saturate(1.6);
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--m-hairline-strong) 80%, transparent),
+    0 10px 30px rgba(20, 16, 12, 0.08);
+}
+@media (max-width: 1023px) {
+  .site-bar[data-condensed="true"] {
+    max-width: calc(100% - 1.25rem);
+  }
+}
+
+.nav-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--m-surface-strong);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 380ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    width 380ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 220ms;
+}
+
+.scroll-line {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 60;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--m-accent), var(--m-accent-text));
+  pointer-events: none;
+}
+
+/* Hamburger to X. */
+.burger line {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 460ms cubic-bezier(0.7, 0, 0.2, 1);
+}
+.burger-btn[aria-expanded="true"] .burger-1 {
+  transform: translateY(4px) rotate(45deg);
+}
+.burger-btn[aria-expanded="true"] .burger-2 {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+.menu-sheet {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-0.5rem) scale(0.985);
+  transform-origin: top center;
+  transition:
+    opacity 260ms ease,
+    transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    visibility 0s linear 420ms;
+}
+.menu-sheet[data-open="true"] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+.menu-sheet li {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 300ms,
+    transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.menu-sheet[data-open="true"] li {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(60ms + var(--i, 0) * 45ms);
+}
+
+/* Sun and moon morph into each other; --tm is 0 in light and 1 in dark (globals.css). */
+.tt-body,
+.tt-cut,
+.tt-rays {
+  transition:
+    transform 700ms cubic-bezier(0.5, 0, 0.1, 1),
+    opacity 500ms;
+}
+.tt-body {
+  transform-origin: 12px 12px;
+  transform: scale(calc(1 - 0.42 * var(--tm)));
+}
+.tt-cut {
+  transform: translate(calc(var(--tm) * 14px), calc(var(--tm) * -14px));
+}
+.tt-rays {
+  transform-origin: 12px 12px;
+  opacity: var(--tm);
+  transform: rotate(calc(var(--tm) * 90deg))
+    scale(calc(0.55 + 0.45 * var(--tm)));
+}
+.theme-btn:hover .tt-rays {
+  transform: rotate(calc(var(--tm) * 90deg + 25deg))
+    scale(calc(0.55 + 0.45 * var(--tm)));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-bar,
+  .nav-hover,
+  .burger line,
+  .menu-sheet,
+  .menu-sheet li,
+  .tt-body,
+  .tt-cut,
+  .tt-rays {
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+  .scroll-line {
+    display: none;
+  }
+}

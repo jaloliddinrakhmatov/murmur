@@ -1,0 +1,146 @@
+/*
+ * Murmur design tokens. Semantic names only: components never use raw colors.
+ * Light/dark follow the window's appearance (Electron nativeTheme → prefers-color-scheme),
+ * which the in-app Appearance setting controls. Light values are measured from the reference
+ * screenshots; the ember accent is Murmur's own and takes
+ * the role of the reference's selection colour. There is no dark reference: dark values keep
+ * Murmur's palette with the same roles.
+ */
+@import "./fonts.css";
+
+:root {
+  /* Surfaces */
+  --m-canvas: #f5f4f1; /* window background, title bar, sidebar */
+  --m-sheet: #fcfcfb; /* rounded content panel, list rows */
+  --m-surface: #f5f4f1; /* grouped cards on the sheet, hovered list row */
+  --m-surface-hover: #f0eee9;
+  --m-surface-active: #eeebe4; /* selected navigation item */
+  --m-surface-strong: #eeebe4; /* secondary buttons; never under secondary text (4.3:1) */
+  --m-modal: #ffffff; /* dialogs, popovers, inputs, settings content */
+  --m-overlay: rgba(0, 0, 0, 0.27); /* modal backdrop (measured) */
+
+  /* Lines */
+  --m-hairline: #eeebe4;
+  --m-hairline-strong: #e2ded6; /* input and select borders */
+
+  /* Text */
+  --m-fg: #1a1a1a;
+  --m-fg-secondary: #6e6e6b; /* measured #71716e, darkened to pass 4.5:1 on surface */
+  --m-fg-tertiary: #a3a29e; /* placeholders and off-state titles only */
+  --m-fg-on-accent: #ffffff;
+
+  /* Actions: ink primary (measured), ember accent (Murmur identity) */
+  --m-primary: #1a1a1a;
+  --m-primary-hover: #333333;
+  --m-primary-fg: #ffffff;
+  /* Night screens (setup's two dark PERSONALIZE pages): the same in both themes. */
+  --m-night: #17151a;
+  --m-night-fg: #f3efea;
+  --m-night-fg-secondary: #c9c2cf;
+  --m-night-hairline: #2d2932;
+  --m-disabled: #8c8c8c; /* disabled primary fill (measured) */
+  --m-switch-off: #c4c0b5; /* measured off track … */
+  --m-switch-off-edge: #8c877c; /* … with an outline for 3:1 non-text contrast */
+  --m-switch-thumb: #ffffff;
+  --m-on-image: #ffffff; /* text and controls on banner artwork (both themes) */
+  --m-accent: #e8702f;
+  --m-accent-hover: #d9621f;
+  --m-accent-soft: #fbe6d8;
+  --m-accent-text: #b4521c; /* ember text that passes 4.5:1 on sheet */
+  --m-accent-faint: #fdf3ec; /* example bubbles (the reference's lavender role) */
+
+  /* Status */
+  --m-success: #23734f; /* text passes 4.5:1 on surface */
+  --m-success-soft: #dcefe6;
+  --m-warning: #8c5b03;
+  --m-warning-soft: #f6ead0;
+  --m-danger: #b03247;
+  --m-danger-soft: #f7dde1;
+
+  /* Focus */
+  --m-focus: rgba(232, 112, 47, 0.5);
+
+  /* Elevation */
+  --m-shadow-popover:
+    0 0 0 1px var(--m-hairline), 0 8px 24px rgba(20, 16, 12, 0.12),
+    0 2px 6px rgba(20, 16, 12, 0.06);
+  --m-shadow-dialog:
+    0 0 0 1px var(--m-hairline), 0 24px 64px rgba(20, 16, 12, 0.22),
+    0 4px 12px rgba(20, 16, 12, 0.08);
+  --m-shadow-raised:
+    0 1px 2px rgba(20, 16, 12, 0.08), 0 0 0 0.5px rgba(20, 16, 12, 0.06); /* segmented thumb */
+
+  /* Type */
+  --m-font-sans:
+    "Figtree", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui,
+    sans-serif;
+  --m-font-serif: "EB Garamond", "New York", ui-serif, Georgia, serif;
+  --m-font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Shell metrics */
+  --m-titlebar-h: 52px;
+  --m-sidebar-collapsed: 60px;
+  --m-sidebar-expanded: 216px;
+  --m-sheet-inset: 8px;
+  /* 800 pt text column plus 30 pt padding each side; with the 10 pt scrollbar gutter on both
+     sides of the sheet that puts the column at x = 379 pt in a 1350 pt window (reference). */
+  --m-content-max: 860px;
+
+  /* Motion */
+  --m-duration-fast: 120ms;
+  --m-duration-base: 180ms;
+  --m-duration-slow: 260ms;
+  --m-ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --m-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --m-canvas: #121014;
+    --m-sheet: #1b181e;
+    --m-surface: #232026;
+    --m-surface-hover: #2a262e;
+    --m-surface-active: #322d37;
+    --m-surface-strong: #322d37;
+    --m-modal: #1f1c22;
+    --m-overlay: rgba(0, 0, 0, 0.5);
+
+    --m-hairline: #2d2932;
+    --m-hairline-strong: #3d3843;
+
+    --m-fg: #f3efea;
+    --m-fg-secondary: #a9a2af;
+    --m-fg-tertiary: #7b7481;
+    --m-fg-on-accent: #1a0f08;
+
+    /* Light primary in dark mode: the accessible equivalent of an ink button. */
+    --m-primary: #f3efea;
+    --m-primary-hover: #ffffff;
+    --m-primary-fg: #17151a;
+    --m-disabled: #5d5863;
+    --m-switch-off: #4a4550;
+    --m-switch-off-edge: #8f8896;
+    --m-switch-thumb: #f3efea;
+    --m-accent: #ff8a4c;
+    --m-accent-hover: #ff9b64;
+    --m-accent-soft: #3a2519;
+    --m-accent-text: #ffa06b;
+    --m-accent-faint: #2a1d15;
+
+    --m-success: #5fd3a4;
+    --m-success-soft: #173328;
+    --m-warning: #e6b455;
+    --m-warning-soft: #33280f;
+    --m-danger: #ff6b80;
+    --m-danger-soft: #3a1a20;
+
+    --m-focus: rgba(255, 138, 76, 0.55);
+
+    --m-shadow-popover:
+      0 0 0 1px var(--m-hairline-strong), 0 10px 28px rgba(0, 0, 0, 0.5);
+    --m-shadow-dialog:
+      0 0 0 1px var(--m-hairline-strong), 0 28px 72px rgba(0, 0, 0, 0.6);
+    --m-shadow-raised:
+      0 1px 2px rgba(0, 0, 0, 0.5), 0 0 0 0.5px rgba(255, 255, 255, 0.06);
+  }
+}

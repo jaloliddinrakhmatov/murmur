@@ -1,0 +1,22 @@
+{
+  "name": "murmur",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*",
+    "native"
+  ],
+  "scripts": {
+    "build:native": "npm run build --workspace native",
+    "build": "npm run build --workspace apps/desktop",
+    "dev": "npm run dev --workspace apps/desktop",
+    "test": "npm run test --workspaces --if-present",
+    "smoke": "npm run smoke --workspace apps/desktop",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "prettier": "^3.9.10"
+  }
+}

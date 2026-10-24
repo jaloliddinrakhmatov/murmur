@@ -1,0 +1,184 @@
+{
+  "measuredAt": "2026-10-15T00:19:18.869Z",
+  "electron": "44.5.1",
+  "results": [
+    {
+      "name": "window-config",
+      "status": "PASS",
+      "details": {
+        "isAlwaysOnTop": true,
+        "isFocusable": false,
+        "backgroundColor": "#000000",
+        "visibleOnAllWorkspaces": true,
+        "readyToShowMs": 532.7
+      }
+    },
+    {
+      "name": "transparent-background",
+      "status": "PASS",
+      "details": {
+        "size": {
+          "width": 480,
+          "height": 112
+        },
+        "cornerAlpha": 0,
+        "centerAlpha": 250
+      }
+    },
+    {
+      "name": "state-paint-latency<=50ms-p95",
+      "status": "PASS",
+      "details": {
+        "ms": {
+          "n": 60,
+          "p50": 33.32,
+          "p95": 34.1,
+          "max": 34.42
+        }
+      }
+    },
+    {
+      "name": "positioning-on-2-display(s)",
+      "status": "PASS",
+      "details": {
+        "placements": [
+          {
+            "displayId": 1,
+            "scaleFactor": 2,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "width": 1710,
+              "height": 1107
+            },
+            "workArea": {
+              "x": 0,
+              "y": 34,
+              "width": 1710,
+              "height": 986
+            },
+            "capsule": {
+              "x": 735,
+              "y": 952,
+              "width": 240,
+              "height": 56
+            },
+            "matchesTarget": true,
+            "insideWorkArea": true,
+            "resolvedDisplay": true
+          },
+          {
+            "displayId": 2,
+            "scaleFactor": 1,
+            "bounds": {
+              "x": -98,
+              "y": -1080,
+              "width": 1920,
+              "height": 1080
+            },
+            "workArea": {
+              "x": -98,
+              "y": -1050,
+              "width": 1920,
+              "height": 1050
+            },
+            "capsule": {
+              "x": 742,
+              "y": -68,
+              "width": 240,
+              "height": 56
+            },
+            "matchesTarget": true,
+            "insideWorkArea": true,
+            "resolvedDisplay": true
+          }
+        ],
+        "cursor": {
+          "x": 798,
+          "y": 609
+        },
+        "cursorDisplayId": 1
+      }
+    },
+    {
+      "name": "no-focus-steal:same-app-editor (30 show/state/moveTop cycles + synthetic click)",
+      "status": "PASS",
+      "details": {
+        "baseline": {
+          "activeElementId": "editor",
+          "hasFocus": true,
+          "selectionStart": 6,
+          "valueLength": 94
+        },
+        "failures": [],
+        "afterClick": {
+          "editorFocused": true,
+          "capsuleFocused": false
+        }
+      }
+    },
+    {
+      "name": "negative-control:focusable-window-steals-focus",
+      "status": "PASS",
+      "details": {
+        "editorFocusedAfterControlShow": false,
+        "controlFocused": true
+      }
+    },
+    {
+      "name": "no-focus-steal:external-app (TextEdit, 30 cycles, lsappinfo)",
+      "status": "PASS",
+      "details": {
+        "textEditBecameFrontmost": true,
+        "violations": [],
+        "nativeFrontmost": {
+          "nsWorkspace": "com.apple.TextEdit",
+          "windowList": "com.github.Electron"
+        },
+        "negativeControlFront": "com.github.Electron",
+        "nativeFrontmostAfterControl": "com.github.Electron"
+      }
+    },
+    {
+      "name": "negative-control:external focusable window takes frontmost",
+      "status": "PASS",
+      "details": {
+        "front": "com.github.Electron"
+      }
+    },
+    {
+      "name": "content-protection-configurable",
+      "status": "PASS",
+      "details": {
+        "note": "Configured only; exclusion from a real screen share was not observed."
+      }
+    },
+    {
+      "name": "click-through",
+      "status": "NOT-TESTED",
+      "details": {
+        "configured": "setIgnoreMouseEvents(true, { forward: true }) while idle; hover toggles interactivity",
+        "reason": "needs a real or synthesized pointer (event posting needs Accessibility, not granted)"
+      }
+    },
+    {
+      "name": "native-addon-loads-in-electron",
+      "status": "PASS",
+      "details": {
+        "electron": "44.5.1",
+        "napi": "10",
+        "register": {
+          "ok": true,
+          "status": 0,
+          "normalized": "Ctrl+Opt+f8"
+        },
+        "permissions": {
+          "accessibility": false,
+          "inputMonitoring": false,
+          "postEvents": false,
+          "secureEventInput": false
+        }
+      }
+    }
+  ]
+}

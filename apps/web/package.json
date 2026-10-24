@@ -1,0 +1,30 @@
+{
+  "name": "@murmur/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Murmur marketing website (Next.js, App Router, static rendering)",
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --test \"test/*.test.ts\""
+  },
+  "dependencies": {
+    "@gsap/react": "2.1.2",
+    "@murmur/account-api": "*",
+    "gsap": "3.15.0",
+    "next": "16.4.2",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "24.19.0",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "tailwindcss": "4.3.3",
+    "typescript": "5.9.3"
+  }
+}

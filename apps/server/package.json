@@ -1,0 +1,47 @@
+{
+  "name": "@murmur/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Murmur account server: accounts, teams, referrals, usage, plans and billing (NestJS + Prisma + PostgreSQL)",
+  "scripts": {
+    "db:start": "bash scripts/db.sh start",
+    "db:stop": "bash scripts/db.sh stop",
+    "db:migrate": "prisma migrate dev",
+    "db:generate": "prisma generate",
+    "dev": "MURMUR_ENV=development node --env-file-if-exists=.env --import tsx --watch src/main.ts",
+    "start": "node --env-file-if-exists=.env --import tsx src/main.ts",
+    "mail:setup": "node --import tsx scripts/mail-setup.ts",
+    "mail:test": "node --env-file-if-exists=.env --import tsx scripts/mail-test.ts",
+    "help:setup": "node --import tsx scripts/help-setup.ts",
+    "help:test": "node --env-file-if-exists=.env --import tsx scripts/help-test.ts",
+    "help:eval": "node --env-file-if-exists=.env --import tsx scripts/help-eval.ts",
+    "test": "node --import tsx scripts/test.ts",
+    "typecheck": "prisma generate && tsc -p tsconfig.json",
+    "pretest": "prisma generate",
+    "predev": "prisma generate",
+    "prestart": "prisma generate"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "24.19.0",
+    "@types/nodemailer": "8.0.2",
+    "@types/pg": "^8.23.1",
+    "prisma": "^7.10.1",
+    "tsx": "^4.23.15",
+    "typescript": "5.9.3"
+  },
+  "dependencies": {
+    "@murmur/account-api": "*",
+    "@nestjs/common": "^12.2.0",
+    "@nestjs/core": "^12.2.0",
+    "@nestjs/platform-express": "^12.2.0",
+    "@prisma/adapter-pg": "^7.10.1",
+    "@prisma/client": "^7.10.1",
+    "nodemailer": "10.1.7",
+    "pg": "^8.23.1",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "zod": "^4.6.5"
+  }
+}

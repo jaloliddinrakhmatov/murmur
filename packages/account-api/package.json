@@ -1,0 +1,17 @@
+{
+  "name": "@murmur/account-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "The contract between the Murmur desktop app and the Murmur server: routes, request and response schemas (zod)",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.ts\"",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "zod": "4.6.5"
+  }
+}

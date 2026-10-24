@@ -1,0 +1,14 @@
+{
+  "name": "@murmur/speech",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Provider-independent speech-to-text interface and adapters (validated in M0)",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.ts\"",
+    "typecheck": "tsc -p tsconfig.json"
+  }
+}

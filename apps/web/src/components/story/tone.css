@@ -1,0 +1,80 @@
+/* Section tones: a softly tinted band with no hard edges, in the visitor's theme. */
+
+.tone-night {
+  /* Night tokens map to the page theme, so the band is light in light mode and dark in dark mode. */
+  --m-night: var(--m-sheet);
+  --m-night-fg: var(--m-fg);
+  --m-night-fg-secondary: var(--m-fg-secondary);
+  --m-night-hairline: var(--m-hairline-strong);
+  position: relative;
+  isolation: isolate;
+  color: var(--m-fg);
+  background: linear-gradient(
+    to bottom,
+    transparent 0,
+    var(--m-sheet) 9rem,
+    var(--m-sheet) calc(100% - 9rem),
+    transparent 100%
+  );
+}
+.eyebrow-night {
+  color: var(--m-accent-text) !important;
+}
+.title-night em {
+  color: var(--m-accent-text) !important;
+}
+
+.amb {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.amb i {
+  position: absolute;
+  width: 46rem;
+  height: 46rem;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.55;
+  will-change: transform;
+}
+.amb i:first-child {
+  left: -12rem;
+  top: 12%;
+  background: radial-gradient(
+    closest-side,
+    rgba(255, 138, 76, 0.2),
+    transparent
+  );
+  animation: amb-a 26s ease-in-out infinite;
+}
+.amb i:last-child {
+  right: -14rem;
+  bottom: 6%;
+  background: radial-gradient(
+    closest-side,
+    rgba(150, 110, 200, 0.2),
+    transparent
+  );
+  animation: amb-b 32s ease-in-out infinite;
+}
+.amb[data-paused="true"] i {
+  animation-play-state: paused;
+}
+@keyframes amb-a {
+  50% {
+    transform: translate3d(10rem, 6rem, 0) scale(1.15);
+  }
+}
+@keyframes amb-b {
+  50% {
+    transform: translate3d(-9rem, -7rem, 0) scale(1.1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .amb i {
+    animation: none;
+  }
+}

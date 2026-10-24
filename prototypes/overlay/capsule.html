@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self'; script-src 'self'"
+    />
+    <title>Murmur Capsule</title>
+    <link rel="stylesheet" href="capsule.css" />
+  </head>
+  <body>
+    <div
+      id="capsule"
+      class="resting"
+      role="status"
+      aria-live="polite"
+      aria-label="Murmur is idle"
+    >
+      <span class="dot" aria-hidden="true"></span>
+      <span class="bars" aria-hidden="true"
+        ><i></i><i></i><i></i><i></i><i></i
+      ></span>
+      <span class="label"></span>
+    </div>
+    <script src="capsule.js"></script>
+  </body>
+</html>

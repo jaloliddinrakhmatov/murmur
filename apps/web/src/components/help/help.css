@@ -1,0 +1,159 @@
+/* Help chat: launcher and panel. Colours come from the site tokens, so light and dark follow the theme. */
+
+.help-root {
+  --help-edge: max(1rem, env(safe-area-inset-right));
+  --help-edge-b: max(1rem, env(safe-area-inset-bottom));
+}
+
+/* ---- Launcher ---- */
+.help-launcher {
+  position: fixed;
+  z-index: 45;
+  right: var(--help-edge);
+  bottom: var(--help-edge-b);
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 999px;
+  background: var(--m-primary);
+  color: var(--m-primary-fg);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--m-fg) 12%, transparent),
+    0 10px 30px rgba(20, 16, 12, 0.22);
+  cursor: pointer;
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.2s,
+    visibility 0.2s,
+    background-color 0.2s;
+}
+.help-launcher:hover {
+  transform: translateY(-2px) scale(1.04);
+  background: var(--m-primary-hover);
+}
+.help-launcher:active {
+  transform: scale(0.96);
+}
+.help-launcher:focus-visible {
+  outline: 2px solid var(--m-accent);
+  outline-offset: 3px;
+  border-radius: 999px;
+}
+.help-launcher svg {
+  overflow: visible;
+}
+.help-ic-pill,
+.help-ic-x {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.2s;
+}
+.help-ic-pill path {
+  fill: currentColor;
+}
+.help-ic-dot {
+  fill: var(--m-accent);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: help-breath 6s ease-in-out 3s infinite;
+}
+.help-ic-x {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.5);
+}
+.help-ic-x path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+.help-launcher[data-open="true"] .help-ic-pill {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.5);
+}
+.help-launcher[data-open="true"] .help-ic-x {
+  opacity: 1;
+  transform: none;
+}
+.help-launcher[data-open="true"] .help-ic-dot {
+  animation: none;
+}
+@keyframes help-breath {
+  0%,
+  16%,
+  100% {
+    transform: scale(1);
+  }
+  8% {
+    transform: scale(1.45);
+  }
+}
+
+.help-unread {
+  position: absolute;
+  top: 0.1rem;
+  right: 0.1rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 999px;
+  background: var(--m-accent);
+  box-shadow: 0 0 0 2px var(--m-canvas);
+}
+
+.help-tip {
+  position: absolute;
+  right: calc(100% + 0.75rem);
+  top: 50%;
+  translate: 0.25rem -50%;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: var(--m-modal);
+  color: var(--m-fg);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow:
+    0 0 0 1px var(--m-hairline-strong),
+    var(--m-shadow-card);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.18s,
+    translate 0.18s;
+}
+@media (hover: hover) {
+  .help-launcher[data-open="false"]:hover .help-tip,
+  .help-launcher[data-open="false"]:focus-visible .help-tip {
+    opacity: 1;
+    translate: 0 -50%;
+  }
+}
+
+/* Out of the way: while the mobile menu is open. */
+body:has(.burger-btn[aria-expanded="true"]) .help-launcher {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@media (max-width: 639px) {
+  .help-launcher[data-open="true"] {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .help-launcher {
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .help-launcher,
+  .help-launcher * {
+    animation: none !important;
+    transition-duration: 0.01s !important;
+  }
+}

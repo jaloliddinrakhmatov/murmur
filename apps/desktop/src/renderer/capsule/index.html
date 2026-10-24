@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'"
+    />
+    <title>Murmur</title>
+    <link rel="stylesheet" href="./capsule.css" />
+  </head>
+  <body>
+    <div id="capsule" data-state="resting" data-tone="neutral">
+      <span class="icon" aria-hidden="true"></span>
+      <span class="wave" aria-hidden="true"></span>
+      <span class="label"></span>
+      <button class="cancel" type="button" aria-label="Cancel dictation">
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M4.5 4.5l7 7m0-7l-7 7" />
+        </svg>
+      </button>
+      <!-- Announced once per state change; the waveform never speaks. -->
+      <span class="sr" role="status" aria-live="polite"></span>
+    </div>
+    <script type="module" src="./capsule.ts"></script>
+  </body>
+</html>

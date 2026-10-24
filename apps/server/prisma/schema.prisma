@@ -1,0 +1,219 @@
+// Murmur account server. Only account data lives here: never dictations, audio, notes or
+// transcripts (see packages/account-api). Secrets (codes, refresh tokens, invite tokens) are
+// stored only as peppered SHA-256 hashes.
+
+generator client {
+  provider            = "prisma-client"
+  output              = "../src/generated/prisma"
+  moduleFormat        = "esm"
+  importFileExtension = "ts"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id             String    @id @default(cuid())
+  email          String    @unique
+  firstName      String    @default("")
+  lastName       String    @default("")
+  /// Raw image bytes; the mime type is checked against the magic bytes on upload.
+  avatar         Bytes?
+  avatarMime     String?
+  referralCode   String    @unique
+  /// Referral credit: months earned and not yet consumed as of creditAnchor.
+  creditMonths   Int       @default(0)
+  /// When consumption of creditMonths started (null = not started).
+  creditAnchor   DateTime?
+  promoCode      String?
+  /// Set when the user's first team (and its free trial) was created: one trial per person.
+  trialClaimedAt DateTime?
+  createdAt      DateTime  @default(now())
+
+  devices           Device[]
+  membership        Membership?
+  subscription      Subscription?
+  usage             Usage[]
+  referralAsReferee Referral?     @relation("Referee")
+  referralsMade     Referral[]    @relation("Referrer")
+  invitesSent       TeamInvite[]
+}
+
+model SignInCode {
+  id         String    @id @default(cuid())
+  email      String
+  codeHash   String
+  attempts   Int       @default(0)
+  expiresAt  DateTime
+  consumedAt DateTime?
+  createdAt  DateTime  @default(now())
+
+  @@index([email, createdAt])
+}
+
+/// One row per sign-in; its refresh tokens form the session chain.
+model Device {
+  id         String    @id @default(cuid())
+  userId     String
+  name       String
+  platform   String
+  appVersion String
+  createdAt  DateTime  @default(now())
+  lastSeenAt DateTime  @default(now())
+  revokedAt  DateTime?
+
+  user   User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokens RefreshToken[]
+
+  @@index([userId])
+}
+
+model RefreshToken {
+  id        String    @id @default(cuid())
+  deviceId  String
+  tokenHash String    @unique
+  createdAt DateTime  @default(now())
+  expiresAt DateTime
+  /// Set when rotated; presenting a used token again revokes the whole device chain.
+  usedAt    DateTime?
+  /// The successor's refresh token, AES-256-GCM encrypted with a server key, kept only for the
+  /// reuse grace window (a retried refresh gets the same successor). Cleared afterwards.
+  successorEnc String?
+
+  device Device @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+
+  @@index([deviceId])
+}
+
+model Team {
+  id          String    @id @default(cuid())
+  name        String
+  trialEndsAt DateTime?
+  createdAt   DateTime  @default(now())
+
+  members Membership[]
+  invites TeamInvite[]
+}
+
+/// userId is unique: one team per user.
+model Membership {
+  userId   String   @id
+  teamId   String
+  role     String
+  joinedAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  team Team @relation(fields: [teamId], references: [id], onDelete: Cascade)
+
+  @@index([teamId])
+}
+
+model TeamInvite {
+  id          String   @id @default(cuid())
+  teamId      String
+  email       String
+  tokenHash   String   @unique
+  /// pending | accepted | revoked ("expired" is derived from expiresAt)
+  status      String   @default("pending")
+  invitedById String?
+  createdAt   DateTime @default(now())
+  expiresAt   DateTime
+
+  team      Team  @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  invitedBy User? @relation(fields: [invitedById], references: [id], onDelete: SetNull)
+
+  @@index([teamId])
+  @@index([email])
+}
+
+model Referral {
+  id         String    @id @default(cuid())
+  referrerId String
+  refereeId  String    @unique
+  code       String
+  /// signed-up | qualified | rewarded
+  status     String    @default("signed-up")
+  createdAt  DateTime  @default(now())
+  rewardedAt DateTime?
+
+  referrer User @relation("Referrer", fields: [referrerId], references: [id], onDelete: Cascade)
+  referee  User @relation("Referee", fields: [refereeId], references: [id], onDelete: Cascade)
+
+  @@index([referrerId])
+}
+
+/// Largest word count reported for a local calendar day.
+model Usage {
+  userId String
+  day    String
+  words  Int
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, day])
+}
+
+model Subscription {
+  id                 String   @id @default(cuid())
+  userId             String   @unique
+  plan               String
+  interval           String
+  seats              Int
+  /// active | canceled | past_due
+  status             String   @default("active")
+  currentPeriodStart DateTime
+  currentPeriodEnd   DateTime
+  cancelAtPeriodEnd  Boolean  @default(false)
+  createdAt          DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+/// Development mailer: queued emails are stored here instead of being sent.
+model OutboxEmail {
+  id        String   @id @default(cuid())
+  to        String
+  subject   String
+  body      String
+  /// Machine-readable extras for developers (the sign-in code, the invite token).
+  kind      String
+  code      String?
+  createdAt DateTime @default(now())
+
+  @@index([to, createdAt])
+}
+
+/// Survives account deletion (no foreign key): what an email address has already used, keyed by a
+/// peppered hash of the normalized address (lower-case, no +tag, no dots for gmail), so deleting
+/// and re-creating an account can't repeat a referral, a team trial or a referral reward.
+model EmailTombstone {
+  emailHash     String    @id
+  referredAt    DateTime?
+  trialClaimedAt DateTime?
+  rewardPaidAt  DateTime?
+  createdAt     DateTime  @default(now())
+}
+
+/// Sign-in attempts per email (peppered hash of the address) over the last 24 hours, so the
+/// daily caps and backoff survive restarts. kind: start | verify.
+model AuthAttempt {
+  id        String   @id @default(cuid())
+  emailHash String
+  kind      String
+  at        DateTime
+
+  @@index([emailHash, kind, at])
+}
+
+/// "Tell me when Murmur for Mac is ready" sign-ups from the website. emailHash (peppered hash of the
+/// normalized address) makes repeats a no-op; email is kept as typed because it is needed to write
+/// to the person later. Nobody is emailed from this table until the double-opt-in decision is made.
+model WaitlistEntry {
+  id        String   @id @default(cuid())
+  emailHash String   @unique
+  email     String
+  /// Which form it came from (a short slug such as "home" or "download").
+  source    String   @default("web")
+  createdAt DateTime @default(now())
+}

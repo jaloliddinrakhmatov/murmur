@@ -1,0 +1,38 @@
+node_modules/
+prototypes/.cache/
+target/
+*.node
+prototypes/**/results/*.raw.json
+apps/desktop/out/
+apps/desktop/results/smoke.log
+apps/desktop/.env
+.env
+dist/
+# Private reference screenshots (contain personal data) and everything derived from them.
+screenshots/
+docs/ui/reference-comparison/
+apps/desktop/release/
+apps/desktop/results/latency/
+.DS_Store
+*.sqlite
+*.sqlite-*
+*.wav
+*.wav.enc
+secrets.json
+vault.key
+.env.*
+!.env.example
+.claude/settings.local.json
+# Generated screenshots (`npm run capture`, per stage) and test output: large and regenerable,
+# kept on disk only.
+docs/ui/
+apps/desktop/results/
+# Build caches and electron-vite's temporary config copies.
+*.tsbuildinfo
+apps/desktop/electron.vite.config.*.mjs
+# Server: local Postgres cluster and generated Prisma client.
+apps/server/.dev/
+apps/server/src/generated/
+
+# Private reference screenshots (personal data): never commit
+photos_3/

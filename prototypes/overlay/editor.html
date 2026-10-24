@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'unsafe-inline'"
+    />
+    <title>Murmur test editor</title>
+  </head>
+  <body
+    style="
+      margin: 0;
+      font:
+        14px -apple-system,
+        sans-serif;
+    "
+  >
+    <textarea
+      id="editor"
+      autofocus
+      style="
+        box-sizing: border-box;
+        width: 100vw;
+        height: 100vh;
+        border: 0;
+        padding: 16px;
+        font: inherit;
+      "
+    >
+Type here, then hold Ctrl+Opt+Space. The capsule must never take focus from this field.
+</textarea>
+    <script src="editor.js"></script>
+  </body>
+</html>

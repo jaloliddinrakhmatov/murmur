@@ -1,0 +1,185 @@
+{
+  "measuredAt": "2026-10-15T00:13:46.237Z",
+  "machine": {
+    "macos": "27.0.1",
+    "arch": "arm64",
+    "cpu": "Apple M2",
+    "node": "v24.12.0"
+  },
+  "permissions": {
+    "accessibility": false,
+    "inputMonitoring": false,
+    "postEvents": false,
+    "secureEventInput": false
+  },
+  "layouts": {
+    "installedCount": 264,
+    "withoutLatinV": ["com.apple.keylayout.Turkmen"],
+    "selected": [
+      {
+        "sourceId": "com.apple.keylayout.ABC",
+        "keycode": 9,
+        "keycodeToPost": 9,
+        "ansiVTypes": "v"
+      },
+      {
+        "sourceId": "com.apple.keylayout.Russian-Phonetic",
+        "keycode": 9,
+        "keycodeToPost": 9,
+        "ansiVTypes": "v"
+      },
+      {
+        "sourceId": "com.apple.keylayout.Russian",
+        "keycode": 9,
+        "keycodeToPost": 9,
+        "ansiVTypes": "v"
+      },
+      {
+        "sourceId": "com.apple.keylayout.RussianWin",
+        "keycode": 9,
+        "keycodeToPost": 9,
+        "ansiVTypes": "v"
+      },
+      {
+        "sourceId": "com.apple.keylayout.Ukrainian",
+        "keycode": 9,
+        "keycodeToPost": 9,
+        "ansiVTypes": "v"
+      },
+      {
+        "sourceId": "com.apple.keylayout.Colemak",
+        "keycode": 9,
+        "keycodeToPost": 9,
+        "ansiVTypes": "v"
+      },
+      {
+        "sourceId": "com.apple.keylayout.Dvorak",
+        "keycode": 47,
+        "keycodeToPost": 47,
+        "ansiVTypes": "k"
+      },
+      {
+        "sourceId": "com.apple.keylayout.DVORAK-QWERTYCMD",
+        "keycode": 9,
+        "keycodeToPost": 9,
+        "ansiVTypes": "v"
+      },
+      {
+        "sourceId": "com.apple.keylayout.British",
+        "keycode": 9,
+        "keycodeToPost": 9,
+        "ansiVTypes": "v"
+      },
+      {
+        "sourceId": "com.apple.keylayout.French",
+        "keycode": 9,
+        "keycodeToPost": 9,
+        "ansiVTypes": "v"
+      },
+      {
+        "sourceId": "com.apple.keylayout.German",
+        "keycode": 9,
+        "keycodeToPost": 9,
+        "ansiVTypes": "v"
+      },
+      {
+        "sourceId": "com.apple.keylayout.US",
+        "keycode": 9,
+        "keycodeToPost": 9,
+        "ansiVTypes": "v"
+      },
+      {
+        "sourceId": "com.apple.keylayout.Kazakh",
+        "keycode": 9,
+        "keycodeToPost": 9,
+        "ansiVTypes": "v"
+      },
+      {
+        "sourceId": "com.apple.keylayout.Turkish-QWERTY-PC",
+        "keycode": 9,
+        "keycodeToPost": 9,
+        "ansiVTypes": "v"
+      },
+      {
+        "sourceId": "com.apple.keylayout.Turkish-QWERTY",
+        "keycode": 9,
+        "keycodeToPost": 9,
+        "ansiVTypes": "v"
+      },
+      {
+        "sourceId": "com.apple.keylayout.Turkish-Standard",
+        "keycode": 8,
+        "keycodeToPost": 8,
+        "ansiVTypes": "c"
+      },
+      {
+        "sourceId": "com.apple.keylayout.Turkish",
+        "keycode": 8,
+        "keycodeToPost": 8,
+        "ansiVTypes": "c"
+      },
+      {
+        "sourceId": "com.apple.keylayout.Uzbek-Cyrillic",
+        "keycode": 9,
+        "keycodeToPost": 9,
+        "ansiVTypes": "v"
+      }
+    ],
+    "current": {
+      "sourceId": "com.apple.keylayout.ABC",
+      "keycodeToPost": 9,
+      "keycode": 9,
+      "ansiVTypes": "v"
+    }
+  },
+  "timingsMs": {
+    "frontmostApp": {
+      "n": 50,
+      "p50": 0.254,
+      "p95": 0.927,
+      "max": 14.636
+    },
+    "focusedElement": {
+      "n": 50,
+      "p50": 0.069,
+      "p95": 0.114,
+      "max": 20.063
+    },
+    "clipboardSnapshot": {
+      "n": 100,
+      "p50": 0.033,
+      "p95": 0.053,
+      "max": 0.578
+    },
+    "clipboardWriteText": {
+      "n": 100,
+      "p50": 0.391,
+      "p95": 4.575,
+      "max": 17.401
+    },
+    "snapshotWriteRestoreCycle": {
+      "n": 100,
+      "p50": 0.761,
+      "p95": 0.837,
+      "max": 1.139
+    },
+    "insertTextChainCurrentPermissions": {
+      "n": 30,
+      "p50": 10.296,
+      "p95": 13.445,
+      "max": 13.98
+    },
+    "carbonRegisterUnregister": {
+      "n": 50,
+      "p50": 0.054,
+      "p95": 0.114,
+      "max": 3.335
+    }
+  },
+  "insertTextResultCurrentPermissions": {
+    "strategy": "clipboard-only",
+    "reason": "no-post-event-permission",
+    "steps": ["focus:accessibility-not-trusted"]
+  },
+  "userClipboardRestored": true
+}
