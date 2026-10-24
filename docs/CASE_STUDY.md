@@ -117,3 +117,29 @@ When an output is rejected, the deterministic result is used instead. An evaluat
   - Apple Developer ID signing and notarization for a public release;
   - hosting the account server;
   - automatic updates.
+
+## My role
+
+I built Murmur as a solo product owner and lead developer, working with an AI coding agent (Claude Code) as my engineering partner. The agent wrote most of the code; I decided what to build, how it should behave, and when it was good enough.
+
+- **Product and scope.**
+  - I defined the product and the feature set, and chose the stack (Electron, Rust, NestJS, Next.js).
+  - I split the work into stages, and each stage shipped only after I reviewed and approved it.
+- **Key decisions.**
+  - Privacy defaults: no cloud history and no training on user data.
+  - AI cleanup stays off until a model passes the evaluation suite.
+  - Which speech and AI providers to support, and keeping the lighter cleanup level as the default.
+  - What must never happen, for example dictating into password fields or pasting into the wrong app.
+- **Testing on real use.**
+  - I used every feature daily on my own Mac.
+  - I confirmed meeting audio capture by ear.
+  - I ran the AI evaluations with my own API keys and checked the results of the automated smoke tests.
+  - I found real-world bugs the tests missed:
+    - Telegram doesn't share selected text, which led to a safe copy fallback for Transforms;
+    - Uzbek dictation returned gibberish with the fast Whisper model, which led to choosing the model per language;
+    - page navigation on the website was slow.
+- **Shipping.**
+  - I deployed the website to Vercel and set up real email delivery.
+  - I produced installable test builds for other Macs.
+
+What I learned: directing an AI agent on a large codebase works when the requirements are precise, every stage is verified with tests and real use, and the human stays responsible for decisions, privacy and quality.
