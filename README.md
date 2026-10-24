@@ -116,7 +116,7 @@ docs/                 Architecture, requirements, test strategy and stage report
 
 ## Download
 
-A test build for Apple Silicon Macs (M1 or newer) is on the **[Releases page](https://github.com/jaloliddinrakhmatov/murmur/releases/latest)**. It isn't signed with an Apple Developer ID yet, so macOS asks you to allow it once:
+A test build for Apple Silicon Macs (M1 or newer) is on the **[Releases page](https://github.com/jaloliddinrakhmatov/murmur/releases)**. It isn't signed with an Apple Developer ID yet, so macOS asks you to allow it once:
 
 1. Open the DMG and drag **Murmur** into **Applications**.
 2. Open Murmur, click **Done** on the warning, then go to **System Settings → Privacy & Security** and click **Open Anyway**.
